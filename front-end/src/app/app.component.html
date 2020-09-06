@@ -1,9 +1,9 @@
 <div class="input-group">
-    <textarea class="form-control" [(ngModel)]="message"></textarea>
+    <textarea class="form-control" #message></textarea>
     <div class="input-group-append">
-        <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+        <button class="btn btn-primary" [disabled]="sendMessageStatus" (click)="sendMessage()">Send</button>
     </div>
     <div class="input-group-append">
-        <button class="btn btn-success" (click)="sendLocation()">Send Location</button>
+        <button class="btn btn-success" [disabled]="sendLocationStatus" (click)="sendLocation()">Send Location</button>
     </div>
 </div>

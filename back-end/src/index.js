@@ -17,13 +17,15 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('messageFromServer', 'A new user has joined');
 
     //notify about incoming message to all the connected clients
-    socket.on('messageFromClient', (message) => {
+    socket.on('messageFromClient', (message, cb) => {
         io.emit('messageFromServer', message);
+        cb('Message shared');//acknowleding that the message was received from client and shared with others
     });
 
     //notify about the user's location
-    socket.on('locationFromClient', ({latitude, longitude}) => {
+    socket.on('locationFromClient', ({latitude, longitude}, cb) => {
         io.emit('locationFromServer', 'https://google.com/maps?q=' + latitude + ',' + longitude);
+        cb('Location shared');//acknowleding that the location was received from client and shared with others
     });
 
     //notify others if any user leaves the application
